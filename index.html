@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Bharatraj N Pattar</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+/* SPLASH SCREEN */
+#splash {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#splash img {
+    width: 160px;
+}
+
+#splash h3 {
+    margin-top: 10px;
+    color: #2a7fba;
+}
+
+/* HEADER */
+header {
+    background: #2a7fba;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* CONTENT */
+.content {
+    height: calc(100vh - 120px);
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* TABS */
+.tab {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+/* SERVICES */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.card {
+    background: #eaf6ff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* FORM */
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background: #2a7fba;
+    color: white;
+    border: none;
+}
+
+/* NAV */
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    background: white;
+    border-top: 1px solid #ccc;
+}
+
+.nav div {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+</style>
+
+<script>
+function openTab(tabName) {
+    let tabs = document.getElementsByClassName("tab");
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+}
+
+/* Splash 2 sec */
+window.onload = function () {
+    setTimeout(function () {
+        document.getElementById("splash").style.display = "none";
+    }, 2000);
+}
+
+/* WhatsApp booking */
+function sendWhatsApp() {
+    let name = document.getElementById("name").value;
+    let mobile = document.getElementById("mobile").value;
+    let type = document.getElementById("type").value;
+    let date = document.getElementById("date").value;
+
+    let msg = `Appointment Request:
+Name: ${name}
+Mobile: ${mobile}
+Type: ${type}
+Date: ${date}`;
+
+    let url = "https://wa.me/91XXXXXXXXXX?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank");
+}
+</script>
+
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+    <img src="dhanvantari.png" alt="Dhanvantari">
+    <h3>Om Dhanvantari Namaha</h3>
+</div>
+
+<!-- HEADER -->
+<header style="background:#2a7fba;color:white;text-align:center;padding:15px;">
+    
+    <div style="font-size:20px;opacity:0.9;">
+        Atharva Ayurvedic Clinic, Tirlapur
+    </div>
+
+    <h2 style="margin:5px 0 0 0;font-size:14px;">
+        Dr. Bharatraj N Pattar
+    </h2>
+
+</header>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <!-- SERVICES -->
+    <div id="services" class="tab active">
+        <h3>Services</h3>
+        <div class="grid">
+            <div class="card">🌿 Ayurvedic</div>
+            <div class="card">🧘 Panchakarma</div>
+            <div class="card">💊 Herbal</div>
+            <div class="card">🩺 General Care</div>
+            <div class="card">✨ Suvarnaprashan</div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="tab">
+        <h3>Contact</h3>
+        <p>📞 +91 8217657327</p>
+
+        <a href="tel:+918217657327">
+            <button>Call Now</button>
+        </a>
+<a href="https://wa.me/9198217657327" target="_blank">
+    <button style="background:#25D366;">
+        💬 WhatsApp
+    </button>
+</a>
+    </div>
+
+    <!-- APPOINTMENT -->
+    <div id="appointment" class="tab">
+        <h3>Book Appointment</h3>
+
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="tel" id="mobile" placeholder="Mobile Number">
+
+        <select id="type">
+            <option>Online</option>
+            <option>Offline</option>
+        </select>
+
+        <input type="date" id="date">
+
+        <button onclick="sendWhatsApp()">Book via WhatsApp</button>
+    </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+    <div onclick="openTab('services')">🏠 Services</div>
+    <div onclick="openTab('contact')">📞 Contact</div>
+    <div onclick="openTab('appointment')">📅 Book</div>
+</div>
+
+</body>
+</html>
